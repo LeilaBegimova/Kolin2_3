@@ -3,6 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     // Safe Args
     id("androidx.navigation.safeargs.kotlin")
+
+    kotlin("kapt")
+
 }
 
 
@@ -66,4 +69,10 @@ dependencies {
 
     //Dots_Indicator
     implementation("com.tbuonomo:dotsindicator:5.0")
+
+    //root
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 }

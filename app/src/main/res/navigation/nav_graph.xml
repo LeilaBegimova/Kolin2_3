@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.kolin2_3.presentation.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.kolin2_3.presentation.ui.fragments.onbord.ViewPagerFragment"
@@ -21,4 +25,9 @@
             app:popUpToInclusive="true"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.kolin2_3.presentation.ui.fragments.add.AddNoteFragment"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" />
 </navigation>

@@ -3,22 +3,24 @@ package com.example.kolin2_3.presentation.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kolin2_3.data.models.NotesModel
+import com.example.kolin2_3.data.local.room.entities.Note
 import com.example.kolin2_3.databinding.NoteItemBinding
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViwHolter>() {
 
-    private var noteList = mutableListOf<NotesModel>()
+    private var noteList = listOf<Note>()
 
-    fun setNoteList(noteList: MutableList<NotesModel>) {
+    fun setNoteList(noteList: List<Note>) {
         this.noteList = noteList
     }
     class NoteViwHolter(private val biding: NoteItemBinding) :
         RecyclerView.ViewHolder(biding.root) {
-        fun onBind(notesModel: NotesModel) {
-            biding.tvNote.text = notesModel.note
+        fun onBind(notesModel: Note) {
+            biding.tvNote.text = notesModel.description
             biding.tvTitleNote.text = notesModel.title
-            biding.tvDateTime.text = notesModel.data
+            biding.tvDateTime.text = notesModel.date
+
+
         }
     }
 
@@ -35,4 +37,5 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViwHolter>() {
     override fun onBindViewHolder(holder: NoteViwHolter, position: Int) {
         holder.onBind(noteList[position])
     }
+
 }

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.kolin2_3.data.models.NotesModel
+import androidx.navigation.fragment.findNavController
+import com.example.kolin2_3.R
+import com.example.kolin2_3.data.models.App
 import com.example.kolin2_3.databinding.FragmentHomeBinding
 import com.example.kolin2_3.presentation.ui.adapter.NoteAdapter
 
@@ -24,16 +26,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize()
+        setupListeners()
     }
 
     private fun initialize() {
-        noteAdapter.setNoteList(
-            mutableListOf(
-                NotesModel("Title", "Note", "Data \n time"),
-                NotesModel("Title", "Note", "Data \n time"),
-                NotesModel("Title", "Note", "Data \n time")
-            )
-        )
+        noteAdapter.setNoteList(App.db.noteDao().getAllNotes())
         biding.rvNotes.adapter = noteAdapter
+    }
+
+    private fun setupListeners() {
+        biding.btnAddNote.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
+        }
     }
 }

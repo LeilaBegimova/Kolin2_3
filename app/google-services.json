@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "553810836844",
+    "project_id": "kotlin23-f9b68",
+    "storage_bucket": "kotlin23-f9b68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553810836844:android:ff0b00cc2bf95d665ec749",
+        "android_client_info": {
+          "package_name": "com.example.kolin2_3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1wtukW8ovaaiDs8luTa69QonFCwwwWGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

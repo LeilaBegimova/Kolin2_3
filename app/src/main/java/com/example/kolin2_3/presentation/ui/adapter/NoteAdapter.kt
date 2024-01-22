@@ -12,9 +12,8 @@ val onLongItemClick: ( position: Int, note:Note) -> Unit
 
     private var noteList = mutableListOf<Note>()
 
-    fun setNoteList(noteList: Int) {
-        this.noteList = noteList.toMutable
-        List()
+    fun setNoteList(noteList: MutableList<Note>) {
+        this.noteList = noteList
     }
     fun removeNote(position:Int){
         noteList.removeAt(position)

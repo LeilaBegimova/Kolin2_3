@@ -4,6 +4,8 @@ plugins {
     // Safe Args
     id("androidx.navigation.safeargs.kotlin")
 
+    id("com.google.gms.google-services")
+
     kotlin("kapt")
 
 }
@@ -75,4 +77,8 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
+
+    // fireBase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation ("com.google.firebase:firebase-auth:")
 }

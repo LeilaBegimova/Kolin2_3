@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.kolin2_3.R
+import com.example.kolin2_3.data.local.room.entities.Note
 import com.example.kolin2_3.data.models.App
 import com.example.kolin2_3.databinding.FragmentHomeBinding
 import com.example.kolin2_3.presentation.ui.adapter.NoteAdapter
 
 class HomeFragment : Fragment() {
     private lateinit var biding: FragmentHomeBinding
-    private val noteAdapter = NoteAdapter()
+    private val noteAdapter = NoteAdapter(::onLongItemClick)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initialize() {
-        noteAdapter.setNoteList(App.db.noteDao().getAllNotes())
+      val noteList= App.db.noteDao().getAllNotes()
         biding.rvNotes.adapter = noteAdapter
     }
 
@@ -38,5 +39,10 @@ class HomeFragment : Fragment() {
         biding.btnAddNote.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
+    }
+    private fun onLongItemClick(position:Int, note:Note){
+        App.db.noteDao().deleteNote(note)
+        noteAdapter.setNoteList(position)
+
     }
 }

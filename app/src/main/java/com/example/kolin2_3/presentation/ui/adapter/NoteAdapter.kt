@@ -6,15 +6,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kolin2_3.data.local.room.entities.Note
 import com.example.kolin2_3.databinding.NoteItemBinding
 
-class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViwHolter>() {
+class NoteAdapter(
+val onLongItemClick: ( position: Int, note:Note) -> Unit
+): RecyclerView.Adapter<NoteAdapter.NoteViwHolter>( ) {
 
-    private var noteList = listOf<Note>()
+    private var noteList = mutableListOf<Note>()
 
-    fun setNoteList(noteList: List<Note>) {
-        this.noteList = noteList
+    fun setNoteList(noteList: Int) {
+        this.noteList = noteList.toMutable
+        List()
     }
-    class NoteViwHolter(private val biding: NoteItemBinding) :
+    fun removeNote(position:Int){
+        noteList.removeAt(position)
+        notifyItemRemoved(position)
+    }
+   inner class NoteViwHolter(private val biding: NoteItemBinding) :
         RecyclerView.ViewHolder(biding.root) {
+        init {
+            biding.root.setOnLongClickListener {
+                onLongItemClick(adapterPosition, noteList[adapterPosition])
+                true
+            }
+        }
+
+
+
         fun onBind(notesModel: Note) {
             biding.tvNote.text = notesModel.description
             biding.tvTitleNote.text = notesModel.title
